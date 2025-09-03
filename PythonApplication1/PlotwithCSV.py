@@ -5,7 +5,7 @@ import os
 import Filename
 
 # ==== 基本参数设置 ====
-folder_path = 'E:/work+study/DigSilent/DataTreating/Italy-data-csv+png'
+folder_path = 'E:\work+study\DigSilent\DataFitting\Italy-WTG\Plot_Data_DigSilent'
 csvfiles = [f for f in os.listdir(folder_path) if f.endswith('.csv')]
 
 col_x = 'U_pos_pu_time'                # 横坐标列名（可修改）
@@ -24,8 +24,8 @@ x_right=0
 sub_col_num=2
 sub_row_num=4
 
-Filename.FileName.write_filenames(Filename.FileName(folder_path,csvfiles))
-new_names=Filename.FileName.read_filenames(folder_path)
+Filename.Filename.write_filenames(folder_path,csvfiles)
+new_names=Filename.Filename.read_filenames(folder_path,'filenames.txt')
 # ==== 读取数据 ====
 for idx,filename in enumerate(csvfiles,1):
     csv_file_path = os.path.join(folder_path, filename)

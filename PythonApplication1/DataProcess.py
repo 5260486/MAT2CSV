@@ -13,9 +13,8 @@ folder_path=input("Please input the path of .mat files: ").strip()
 matfiles = [f for f in os.listdir(folder_path) if f.endswith('.mat')]
 matfiles.sort()  # sort files by name, the way of sorting can be changed
 
-x=Filename.FileName(foleder_path=folder_path,files=matfiles)
-Filename.FileName.write_filenames(x)
-new_names =Filename.FileName.read_filenames(x)
+Filename.FileName.write_filenames(folder_path,matfiles)
+new_names =Filename.FileName.read_filenames(folder_path,'filenames.txt')
 
 # 2.Transfer mat to csv in circle
 for idx,filename in enumerate(matfiles,1):
