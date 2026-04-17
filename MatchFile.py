@@ -3,11 +3,11 @@ from MyClass.Filename import Filename
 
 def main():
     
-    b_file_path = 'E:\PSCAD\West Australia\新建文件夹\A'
+    b_file_path = 'E:\新建文件夹\A'
     b_csvfiles = [f for f in os.listdir(b_file_path) if f.endswith('.csv')]
     Filename.Filename.write_filenames(b_file_path,b_csvfiles)
     
-    a_file_path ='E:\PSCAD\West Australia\新建文件夹\B'
+    a_file_path ='E:\新建文件夹\B'
     a_csvfiles = [f for f in os.listdir(a_file_path) if f.endswith('.csv')]
     Filename.Filename.write_filenames(a_file_path,a_csvfiles)
 
