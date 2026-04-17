@@ -5,7 +5,7 @@ from MyClass import Filename
 from MyClass import CSVHelper
 
 
-folder_path='E:\DigSilent\DataTreating\DataFromRTDS\Austria-WTG-FRT\RTDS\Case03补做1105'
+folder_path='.......'
 output_folder=folder_path
 csvfiles = [f for f in os.listdir(folder_path) if f.endswith('.csv')]
 
