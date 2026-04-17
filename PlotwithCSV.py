@@ -5,7 +5,7 @@ import os
 from MyClass import Filename
 
 # ==== 基本参数设置 ====
-folder_path ='E:\DigSilent\DataTreating\DataFromRTDS\Austria-WTG-FRT\现场\PQ 3.30\P'
+folder_path ='........'
 csvfiles = [f for f in os.listdir(folder_path) if f.endswith('.csv')]
 
 col_x = 'P_Pu_Time'                # 横坐标列名（可修改）
