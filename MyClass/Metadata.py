@@ -2,7 +2,7 @@
 
 AUTHOR = "Xu Chang"
 VERSION = "1.1.0"
-EMAIL = "xxxxxx"
+EMAIL = "q.qxu@163.com"
 DESCRIPTION = '''
 
 
