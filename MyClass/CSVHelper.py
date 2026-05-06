@@ -41,3 +41,31 @@ class CSVHelper:
         merged_df.to_csv(output_file, index=False, encoding='utf-8')
         print(f"已保存: {output_file}")
 
+    def cut_data(input_file,csv_filename,head_cut,tail_cut,output_file):
+        with open(input_file, 'r', encoding='utf-8') as infile:
+            # 读取所有行
+            lines = infile.readlines()
+        
+        total_lines = len(lines)
+
+        # 1. 单独提取表头（如果没有行则处理空文件）
+        header = lines[0] if total_lines > 0 else None
+
+        # 2. 计算数据行的起始和结束索引
+        #    - 数据行从索引 1 开始（跳过表头）
+        #    - 掐头从数据行的第 head_cut 行开始（即删除前 head_cut 条数据）
+        data_start = 1 + head_cut
+        data_end = total_lines - tail_cut
+
+        # 3. 获取保留的数据行（确保起始不大于结束，否则无数据）
+        if data_start < data_end:
+            data_lines = lines[data_start:data_end]
+        else:
+            data_lines = []   # 掐头+去尾后无数据行
+
+        # 4. 组合最终结果：表头 + 数据行
+        preserved_lines = [header] + data_lines if header else []
+        
+        # 写入输出文件
+        with open(output_file, 'w', encoding='utf-8') as outfile:
+            outfile.writelines(preserved_lines)
