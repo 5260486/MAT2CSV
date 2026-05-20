@@ -1,5 +1,6 @@
 import pandas as pd
 import os
+import numpy as np
 
 class CSVHelper:
 
@@ -39,9 +40,9 @@ class CSVHelper:
         safe_prefix = prefix.replace('\n', '_').replace('\r', '_').replace('/', '_')
         output_file = os.path.join(output_folder, f"merged_{safe_prefix}.csv")
         merged_df.to_csv(output_file, index=False, encoding='utf-8')
-        print(f"已保存: {output_file}")
+        print(f"Merged: {output_file}")
 
-    def cut_data(input_file,csv_filename,head_cut,tail_cut,output_file):
+    def cut_data(input_file,head_cut,tail_cut,output_file):
         with open(input_file, 'r', encoding='utf-8') as infile:
             # 读取所有行
             lines = infile.readlines()
@@ -69,3 +70,31 @@ class CSVHelper:
         # 写入输出文件
         with open(output_file, 'w', encoding='utf-8') as outfile:
             outfile.writelines(preserved_lines)
+
+        print(f"Finish: {output_file}")
+
+    """
+        target_col----the name of column need be operated 
+        operation----the operation type: '+', '-', '*', '/'
+        operate_value----the value to be operated with column
+    """
+    def operate_column(input_file,target_col,operation,operate_value,output_file):
+        df = pd.read_csv(input_file)
+        
+        if operation == '+':
+            result = df[target_col] + operate_value
+        elif operation == '-':
+            result = df[target_col] - operate_value
+        elif operation == '*':
+            result = df[target_col] * operate_value
+        elif operation == '/':
+            # 处理除数为0的情况：结果设为NaN或0，这里用NaN并警告
+            if operate_value == 0:
+               raise ValueError("除数不能为0")
+            result = df[target_col] / operate_value
+        else:
+            raise ValueError("不支持的操作类型，请使用 '+', '-', '*', '/'")
+
+        df[target_col] = result
+        df.to_csv(output_file, index=False)
+        print(f"Operated：{output_file}")
